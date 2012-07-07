@@ -1,0 +1,6 @@
+name: Dynmap-PreciousStones
+main: org.dynmap.preciousstones.DynmapPreciousStonesPlugin
+version: "${project.version}"
+author: mikeprimm
+depend: [ dynmap, PreciousStones ]
+
