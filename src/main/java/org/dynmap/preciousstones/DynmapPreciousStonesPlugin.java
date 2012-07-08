@@ -140,7 +140,6 @@ public class DynmapPreciousStonesPlugin extends JavaPlugin {
         AreaStyle as = cusstyle.get(worldid + "/" + typeid);
         if(as == null) {
             as = cusstyle.get(typeid);
-            if(as != null) info("Matched " + typeid); 
         }
         if(as == null) {    /* Check for wildcard style matches */
             for(String wc : cuswildstyle.keySet()) {
@@ -319,7 +318,6 @@ public class DynmapPreciousStonesPlugin extends JavaPlugin {
                     cuswildstyle.put(id, new AreaStyle(cfg, "custstyle." + id, defstyle));
                 else
                     cusstyle.put(id, new AreaStyle(cfg, "custstyle." + id, defstyle));
-                info("Added custom style: " + id);
             }
         }
         sect = cfg.getConfigurationSection("ownerstyle");
