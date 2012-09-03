@@ -1,5 +1,6 @@
 package org.dynmap.preciousstones;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -271,8 +272,14 @@ public class DynmapPreciousStonesPlugin extends JavaPlugin {
         /* If both enabled, activate */
         if(dynmap.isEnabled() && ps.isEnabled())
             activate();
+        
+        try {
+            MetricsLite ml = new MetricsLite(this);
+            ml.start();
+        } catch (IOException iox) {
+        }
     }
-
+    private boolean reload = false;
     private void activate() {
         /* Now, get markers API */
         markerapi = api.getMarkerAPI();
@@ -281,6 +288,16 @@ public class DynmapPreciousStonesPlugin extends JavaPlugin {
             return;
         }
         /* Load configuration */
+        if(reload) {
+            reloadConfig();
+            if(set != null) {
+                set.deleteMarkerSet();
+                set = null;
+            }
+        }
+        else {
+            reload = true;
+        }
         FileConfiguration cfg = getConfig();
         cfg.options().copyDefaults(true);   /* Load defaults, if needed */
         this.saveConfig();  /* Save updates, if needed */
