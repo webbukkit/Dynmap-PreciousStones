@@ -93,7 +93,7 @@
   	<dependency>
   		<groupId>org.sacredlabrinth</groupId>
   		<artifactId>PreciousStones</artifactId>
-  		<version>9.5.4</version>
+  		<version>9.5.5</version>
   		<scope>system</scope>
   		<systemPath>${project.basedir}/PreciousStones.jar</systemPath>
   	</dependency>
