@@ -30,8 +30,7 @@ import org.dynmap.markers.MarkerAPI;
 import org.dynmap.markers.MarkerSet;
 
 public class DynmapPreciousStonesPlugin extends JavaPlugin {
-    private static final Logger log = Logger.getLogger("Minecraft");
-    private static final String LOG_PREFIX = "[Dynmap-PreciousStones] ";
+    private static Logger log;
     private static final String DEF_INFOWINDOW = "<div class=\"infowindow\"><span style=\"font-size:120%;\">%regionname%</span><br /> Owners <span style=\"font-weight:bold;\">%playerowners%</span><br/>Members <span style=\"font-weight:bold;\">%playermembers%</span><br/>Flags<br /><span style=\"font-weight:bold;\">%flags%</span></div>";
     Plugin dynmap;
     DynmapAPI api;
@@ -52,6 +51,11 @@ public class DynmapPreciousStonesPlugin extends JavaPlugin {
     Set<String> hidden;
     boolean stop; 
     int maxdepth;
+
+    @Override
+    public void onLoad() {
+        log = this.getLogger();
+    }
     
     private static class AreaStyle {
         String strokecolor;
@@ -80,10 +84,10 @@ public class DynmapPreciousStonesPlugin extends JavaPlugin {
     }
     
     public static void info(String msg) {
-        log.log(Level.INFO, LOG_PREFIX + msg);
+        log.log(Level.INFO, msg);
     }
     public static void severe(String msg) {
-        log.log(Level.SEVERE, LOG_PREFIX + msg);
+        log.log(Level.SEVERE, msg);
     }
 
     private class PreciousStonesUpdate implements Runnable {
